@@ -1,0 +1,618 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<HTML>
+<HEAD>
+	<META HTTP-EQUIV="CONTENT-TYPE" CONTENT="text/html; charset=utf-8">
+	<TITLE>GtkLayout</TITLE>
+	<META NAME="GENERATOR" CONTENT="OpenOffice.org 2.0.2  (Linux)">
+	<META NAME="CREATED" CONTENT="20060605;17051200">
+	<META NAME="CHANGEDBY" CONTENT="Сергей П">
+	<META NAME="CHANGED" CONTENT="20060605;20382500">
+	<STYLE>
+	<!--
+		P { color: #000000 }
+		H2 { color: #000000 }
+		PRE { color: #000000 }
+		PRE.synopsis { background: #eeeeee; border: 1px solid #aaaaaa; padding: 0.05cm }
+		H3 { color: #000000 }
+		PRE.programlisting { background: #eeeeff; border: 1px solid #aaaaff; padding: 0.05cm }
+		TD P { color: #000000 }
+		TH P { color: #000000 }
+		A:link { color: #0000ff; text-decoration: none }
+		A:visited { color: #840084 }
+	-->
+	</STYLE>
+</HEAD>
+<BODY LANG="ru-RU" TEXT="#000000" LINK="#0000ff" VLINK="#840084" BGCOLOR="#ffffff" DIR="LTR"><A NAME="top"></A>
+<TABLE WIDTH=100% CELLPADDING=2 CELLSPACING=2>
+	<TR>
+		<TD>
+			<P><A HREF="GtkVPaned.html"><IMG SRC="left.png" NAME="Графический объект1" ALT="Prev" ALIGN=BOTTOM WIDTH=24 HEIGHT=24 BORDER=0></A></P>
+		</TD>
+		<TD>
+			<P><A HREF="LayoutContainers.html"><IMG SRC="up.png" NAME="Графический объект2" ALT="Up" ALIGN=BOTTOM WIDTH=24 HEIGHT=24 BORDER=0></A></P>
+		</TD>
+		<TD>
+			<P><A HREF="index.html"><IMG SRC="home.png" NAME="Графический объект3" ALT="Home" ALIGN=BOTTOM WIDTH=24 HEIGHT=24 BORDER=0></A></P>
+		</TD>
+		<TH WIDTH=100%>
+			<P ALIGN=CENTER>GTK+ Reference Manual</P>
+		</TH>
+		<TD>
+			<P><A HREF="GtkNotebook.html"><IMG SRC="right.png" NAME="Графический объект4" ALT="Next" ALIGN=BOTTOM WIDTH=24 HEIGHT=24 BORDER=0></A></P>
+		</TD>
+	</TR>
+	<TR>
+		<TD COLSPAN=5>
+			<P><A HREF="#top_of_page">Top</A> &nbsp;|&nbsp; <A HREF="#desc">Description</A>
+			&nbsp;|&nbsp; <A HREF="#object_hierarchy">Object Hierarchy</A> &nbsp;|&nbsp;
+			<A HREF="#properties">Properties</A> &nbsp;|&nbsp; <A HREF="#child_properties">Child
+			Properties</A> &nbsp;|&nbsp; <A HREF="#signal_proto">Signals</A></P>
+		</TD>
+	</TR>
+</TABLE><A NAME="GtkLayout"></A>
+<TABLE WIDTH=100% CELLPADDING=2 CELLSPACING=2>
+	<TR VALIGN=TOP>
+		<TD>
+			<H2><A NAME="top_of_page"></A>GtkLayout</H2>
+			<P>GtkLayout — Безграничная прокручиваемая
+			область, содержащая дочерние виджеты
+			или/и пользовательский рисунок</P>
+		</TD>
+		<TD></TD>
+	</TR>
+</TABLE>
+<H2>Краткое описание</H2>
+<PRE CLASS="synopsis">#include &lt;gtk/gtk.h&gt;
+
+
+            <A HREF="#GtkLayout-struct">GtkLayout</A>;
+<A HREF="GtkWidget.html">GtkWidget</A>*  <A HREF="#gtk-layout-new">gtk_layout_new</A>                  (<A HREF="GtkAdjustment.html">GtkAdjustment</A> *hadjustment,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *vadjustment);
+void        <A HREF="#gtk-layout-put">gtk_layout_put</A>                  (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkWidget.html">GtkWidget</A> *child_widget,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> x,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> y);
+void        <A HREF="#gtk-layout-move">gtk_layout_move</A>                 (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkWidget.html">GtkWidget</A> *child_widget,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> x,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> y);
+void        <A HREF="#gtk-layout-set-size">gtk_layout_set_size</A>             (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> width,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> height);
+void        <A HREF="#gtk-layout-get-size">gtk_layout_get_size</A>             (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> *width,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> *height);
+void        <A HREF="#gtk-layout-freeze">gtk_layout_freeze</A>               (<A HREF="./">GtkLayout</A> *layout);
+void        <A HREF="#gtk-layout-thaw">gtk_layout_thaw</A>                 (<A HREF="./">GtkLayout</A> *layout);
+<A HREF="GtkAdjustment.html">GtkAdjustment</A>* <A HREF="#gtk-layout-get-hadjustment">gtk_layout_get_hadjustment</A>   (<A HREF="./">GtkLayout</A> *layout);
+<A HREF="GtkAdjustment.html">GtkAdjustment</A>* <A HREF="#gtk-layout-get-vadjustment">gtk_layout_get_vadjustment</A>   (<A HREF="./">GtkLayout</A> *layout);
+void        <A HREF="#gtk-layout-set-hadjustment">gtk_layout_set_hadjustment</A>      (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *adjustment);
+void        <A HREF="#gtk-layout-set-vadjustment">gtk_layout_set_vadjustment</A>      (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *adjustment);
+</PRE><H2>
+Иерархия объектов</H2>
+<PRE CLASS="synopsis">  <A HREF="../gobject/gobject-The-Base-Object-Type.html#GObject">GObject</A>
+   +----GInitiallyUnowned
+         +----<A HREF="GtkObject.html">GtkObject</A>
+               +----<A HREF="GtkWidget.html">GtkWidget</A>
+                     +----<A HREF="GtkContainer.html">GtkContainer</A>
+                           +----GtkLayout</PRE><H2>
+Осуществляемые интерфейсы</H2>
+<P>GtkLayout осуществляет AtkImplementorIface.</P>
+<H2>Свойства</H2>
+<PRE CLASS="synopsis">  &quot;<A HREF="#GtkLayout--hadjustment">hadjustment</A>&quot;          <A HREF="GtkAdjustment.html">GtkAdjustment</A>         : Read / Write
+  &quot;<A HREF="#GtkLayout--height">height</A>&quot;               <A HREF="../glib/glib-Basic-Types.html#guint">guint</A>                 : Read / Write
+  &quot;<A HREF="#GtkLayout--vadjustment">vadjustment</A>&quot;          <A HREF="GtkAdjustment.html">GtkAdjustment</A>         : Read / Write
+  &quot;<A HREF="#GtkLayout--width">width</A>&quot;                <A HREF="../glib/glib-Basic-Types.html#guint">guint</A>                 : Read / Write</PRE><H2>
+Дочерние свойства</H2>
+<PRE CLASS="synopsis">  &quot;<A HREF="#GtkLayout--x">x</A>&quot;                    <A HREF="../glib/glib-Basic-Types.html#gint">gint</A>                  : Read / Write
+  &quot;<A HREF="#GtkLayout--y">y</A>&quot;                    <A HREF="../glib/glib-Basic-Types.html#gint">gint</A>                  : Read / Write</PRE><H2>
+Сигналы</H2>
+<PRE CLASS="synopsis">&quot;<A HREF="#GtkLayout-set-scroll-adjustments">set-scroll-adjustments</A>&quot;
+            void        user_function      (<A HREF="./">GtkLayout</A>     *layout,
+                                            <A HREF="GtkAdjustment.html">GtkAdjustment</A> *arg1,
+                                            <A HREF="GtkAdjustment.html">GtkAdjustment</A> *arg2,
+                                            <A HREF="../glib/glib-Basic-Types.html#gpointer">gpointer</A>       user_data)      : Run last / Action</PRE><H2>
+Описание</H2>
+<P><A HREF="./">GtkLayout</A> подобен
+<A HREF="GtkDrawingArea.html">GtkDrawingArea</A> в котором он
+&quot;blank slate&quot; и ничего не делает, а создаёт
+пустой фон по умолчанию. Он отличается
+изначальной поддержкой прокрутки (вы
+можете добавить его для <A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A>),
+и он может содержать дочерние виджеты,
+так как является <A HREF="GtkContainer.html">GtkContainer</A>.
+Однако если вы просто рисуете,
+<A HREF="GtkDrawingArea.html">GtkDrawingArea</A> является
+лучшим выбором, так как он имеет меньше
+накладных расходов. 
+</P>
+<P>Когда обрабатывается выставленные
+сигналы на <A HREF="./">GtkLayout</A>,
+вы должны нарисовать GTK_LAYOUT
+(layout)-&gt;bin_window, а не GTK_WIDGET (layout)-&gt;window, так
+как вы должны делать для области
+рисования. 
+</P>
+<H2>Детали</H2>
+<H3>GtkLayout</H3>
+<PRE CLASS="programlisting">typedef struct {
+  GdkWindow *bin_window;
+<SPAN LANG="ru-RU">} GtkLayout;</SPAN></PRE>
+<HR>
+<H3>gtk_layout_new ()</H3>
+<PRE CLASS="programlisting"><A HREF="GtkWidget.html">GtkWidget</A>*  gtk_layout_new                  (<A HREF="GtkAdjustment.html">GtkAdjustment</A> *hadjustment,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *vadjustment);</PRE><P>
+Создаёт новый <A HREF="./">GtkLayout</A>.
+Если вы не имеете определённых настроек,
+а хотите макет использовать для прокрутки,
+поместите <TT>NULL</TT> для <TT><I>hadjustment</I></TT> и
+<TT><I>vadjustment</I></TT>.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>hadjustment</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Горизонтальная регулировка
+			прокручивания, или <TT>NULL</TT> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>vadjustment</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Вертикальная регулировка прокручивания,
+			или <TT>NULL</TT> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><EM>Возвращает :</EM></P>
+		</TD>
+		<TD>
+			<P>новый <A HREF="./">GtkLayout</A>
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_put ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_put                  (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkWidget.html">GtkWidget</A> *child_widget,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> x,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> y);</PRE><P>
+Добавляет <TT><I>child_widget</I></TT> для <TT><I>layout</I></TT>,
+в позиции (<TT><I>x</I></TT>,<TT><I>y</I></TT>). <TT><I>layout</I></TT>
+становится новым родительским контейнером
+для  <TT><I>child_widget</I></TT>.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>child_widget</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Дочерний виджет 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>x</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>X позиция дочернего виджета 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>y</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Y позиция дочернего виджета 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_move ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_move                 (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkWidget.html">GtkWidget</A> *child_widget,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> x,
+                                             <A HREF="../glib/glib-Basic-Types.html#gint">gint</A> y);</PRE><P>
+Перемещает текущий дочерний виджет для
+<TT><I>layout</I></TT> в новую позицию.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>child_widget</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Текущий дочерний виджет для <TT><I>layout</I></TT>
+						</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>x</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>X позиция для перемещения 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>y</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Y позиция для перемещения 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_set_size ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_set_size             (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> width,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> height);</PRE><P>
+Устанавливает размер прокручиваемой
+области для размещения.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>width</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Ширина всей прокручиваемой области
+						</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>height</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Высота всей прокручиваемой области
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_get_size ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_get_size             (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> *width,
+                                             <A HREF="../glib/glib-Basic-Types.html#guint">guint</A> *height);</PRE><P>
+Получает размер установленный для
+размещения, и определяет полную
+протяжённость размещаемой прокручиваемой
+области. Смотрите <TT><A HREF="#gtk-layout-set-size">gtk_layout_set_size()</A></TT>.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>width</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Размещение сохранения ширины
+			установленной для <TT><I>layout</I></TT>, или
+			<TT>NULL</TT> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>height</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Размещение сохранения высоты
+			установленной для <TT><I>layout</I></TT>, или
+			<TT>NULL</TT> 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_freeze ()</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">void        gtk_layout_freeze               (<A HREF="./">GtkLayout</A> *layout);</PRE><H3 STYLE="margin-left: 1.27cm; margin-right: 1.27cm">
+Внимание</H3>
+<P STYLE="margin-left: 1.27cm; margin-right: 1.27cm"><TT>gtk_layout_freeze</TT>
+устарела и не должна использоваться во
+вновь создаваемом коде.</P>
+<P>Эта функция устарела, и не имеет никакой
+пользы.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_thaw ()</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">void        gtk_layout_thaw                 (<A HREF="./">GtkLayout</A> *layout);</PRE><H3 STYLE="margin-left: 1.27cm; margin-right: 1.27cm">
+Внимание</H3>
+<P STYLE="margin-left: 1.27cm; margin-right: 1.27cm"><TT>gtk_layout_thaw</TT>
+устарела и не должна использоваться во
+вновь создаваемом коде.</P>
+<P>Эта функция устарела, и не имеет никакой
+пользы.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_get_hadjustment ()</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm"><A HREF="GtkAdjustment.html">GtkAdjustment</A>* gtk_layout_get_hadjustment   (<A HREF="./">GtkLayout</A> *layout);</PRE><P>
+Эту функцию нужно вызывать только после
+помещения области расположения в
+<A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A> или иначе
+сконфигурировать для прокрутки. Она
+возвращает <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+используемый для взаимодействия между
+горизонтальной полосой прокрутки и
+<TT><I>layout</I></TT>. 
+</P>
+<P>Смотрите <A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A>,
+<A HREF="GtkScrollbar.html">GtkScrollbar</A>, <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+для деталей.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><EM>Возвращает :</EM></P>
+		</TD>
+		<TD>
+			<P>Горизонтальная регулировка прокрутки
+						</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_get_vadjustment ()</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm"><A HREF="GtkAdjustment.html">GtkAdjustment</A>* gtk_layout_get_vadjustment   (<A HREF="./">GtkLayout</A> *layout);</PRE><P>
+Эту функцию нужно вызывать только после
+помещения области расположения в
+<A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A> или иначе
+сконфигурировать для прокрутки. Она
+возвращает <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+используемый для взаимодействия между
+вертикальной полосой прокрутки и <TT><I>layout</I></TT>.
+</P>
+<P>Смотрите <A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A>,
+<A HREF="GtkScrollbar.html">GtkScrollbar</A>, <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+для деталей.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><EM>Возвращает :</EM></P>
+		</TD>
+		<TD>
+			<P>Вертикальная регулировка прокрутки</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_set_hadjustment ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_set_hadjustment      (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *adjustment);</PRE><P>
+Устанавливает горизонтальный регулятор
+прокручивания для области размещения.
+</P>
+<P>Смотрите <A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A>,
+<A HREF="GtkScrollbar.html">GtkScrollbar</A>, <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+для деталей.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>adjustment</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>новый регулятор прокручивания</P>
+		</TD>
+	</TR>
+</TABLE>
+<HR>
+<H3>gtk_layout_set_vadjustment ()</H3>
+<PRE CLASS="programlisting">void        gtk_layout_set_vadjustment      (<A HREF="./">GtkLayout</A> *layout,
+                                             <A HREF="GtkAdjustment.html">GtkAdjustment</A> *adjustment);</PRE><P>
+Устанавливает вертикальный регулятор
+прокручивания для области размещения.
+</P>
+<P>Смотрите <A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A>,
+<A HREF="GtkScrollbar.html">GtkScrollbar</A>, <A HREF="GtkAdjustment.html">GtkAdjustment</A>
+для деталей.</P>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P> <A HREF="./">GtkLayout</A> 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>adjustment</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>новый регулятор прокручивания</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2>Детали свойств</H2>
+<H3>Свойство &quot;<TT>hadjustment</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;hadjustment&quot;          <A HREF="GtkAdjustment.html">GtkAdjustment</A>         : Read / Write</PRE><P>
+GtkAdjustment для горизонтальной позиции.</P>
+<HR>
+<H3>Свойство &quot;<TT>height</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;height&quot;               <A HREF="../glib/glib-Basic-Types.html#guint">guint</A>                 : Read / Write</PRE><P>
+Высота размещения.</P>
+<P>Допустимые значения: &lt;= G_MAXINT</P>
+<P>Значение по умолчанию: 100</P>
+<HR>
+<H3>Свойство &quot;<TT>vadjustment</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;vadjustment&quot;          <A HREF="GtkAdjustment.html">GtkAdjustment</A>         : Read / Write</PRE><P>
+GtkAdjustment для вертикальной позиции.</P>
+<HR>
+<H3>Свойство &quot;<TT>width</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;width&quot;                <A HREF="../glib/glib-Basic-Types.html#guint">guint</A>                 : Read / Write</PRE><P>
+Ширина размещения.</P>
+<P>Допустимые значения: &lt;= G_MAXINT</P>
+<P>Значение по умолчанию: 100</P>
+<H2>Детали дочерних свойств</H2>
+<H3>Дочерние свойство &quot;<TT>x</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;x&quot;                    <A HREF="../glib/glib-Basic-Types.html#gint">gint</A>                  : Read / Write</PRE><P>
+X позиция дочернего виджета.</P>
+<P>Значение по умолчанию: 0</P>
+<HR>
+<H3>Дочерние свойство &quot;<TT>y</TT>&quot;</H3>
+<PRE CLASS="programlisting" STYLE="margin-bottom: 0.5cm">  &quot;y&quot;                    <A HREF="../glib/glib-Basic-Types.html#gint">gint</A>                  : Read / Write</PRE><P>
+Y позиция дочернего виджета.</P>
+<P>Значение по умолчанию: 0</P>
+<H2>Детали сигналов</H2>
+<H3>Сигнал &quot;set-scroll-adjustments&quot;</H3>
+<PRE CLASS="programlisting">void        user_function                  (<A HREF="./">GtkLayout</A>     *layout,
+                                            <A HREF="GtkAdjustment.html">GtkAdjustment</A> *arg1,
+                                            <A HREF="GtkAdjustment.html">GtkAdjustment</A> *arg2,
+                                            <A HREF="../glib/glib-Basic-Types.html#gpointer">gpointer</A>       user_data)      : Run last / Action</PRE>
+<TABLE BORDER=0 CELLPADDING=2 CELLSPACING=2>
+	<COL WIDTH=0>
+	<COL WIDTH=0>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>layout</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Объект получающий сигнал. 
+			</P>
+		</TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>arg1</I></TT>&nbsp;:</P>
+		</TD>
+		<TD></TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>arg2</I></TT>&nbsp;:</P>
+		</TD>
+		<TD></TD>
+	</TR>
+	<TR>
+		<TD VALIGN=TOP>
+			<P ALIGN=LEFT><TT><I>user_data</I></TT>&nbsp;:</P>
+		</TD>
+		<TD>
+			<P>Пользовательские данные устанавливаемые
+			при подключении обработчика.</P>
+		</TD>
+	</TR>
+</TABLE>
+<H2>Смотрите также</H2>
+<P><A HREF="GtkDrawingArea.html">GtkDrawingArea</A>,
+<A HREF="GtkScrolledWindow.html">GtkScrolledWindow</A> 
+</P>
+</BODY>
+</HTML>
